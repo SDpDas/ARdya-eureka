@@ -1,0 +1,571 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.75rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --gold: 45 100% 51%;
+    --silver: 0 0% 75%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --gold: 45 100% 60%;
+    --silver: 0 0% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Light theme background */
+  body:not(.dark) {
+    background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(255, 215, 0, 0.03), transparent),
+      radial-gradient(ellipse 80% 80% at 80% 80%, rgba(192, 192, 192, 0.02), transparent),
+      radial-gradient(ellipse 80% 80% at 20% 80%, rgba(255, 215, 0, 0.02), transparent), #ffffff;
+  }
+
+  /* Dark theme background */
+  .dark body {
+    background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(255, 215, 0, 0.05), transparent),
+      radial-gradient(ellipse 80% 80% at 80% 80%, rgba(192, 192, 192, 0.03), transparent),
+      radial-gradient(ellipse 80% 80% at 20% 80%, rgba(255, 215, 0, 0.03), transparent), #0a0a0a;
+  }
+}
+
+/* Prevent horizontal overflow */
+.container,
+.max-w-full,
+.w-full {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Golden and Silver Aura Effects */
+.golden-aura {
+  position: relative;
+}
+
+.golden-aura::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, transparent, hsl(var(--gold) / 0.3), transparent);
+  border-radius: inherit;
+  z-index: -1;
+  animation: golden-pulse 3s ease-in-out infinite;
+}
+
+.silver-aura {
+  position: relative;
+}
+
+.silver-aura::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, transparent, hsl(var(--silver) / 0.3), transparent);
+  border-radius: inherit;
+  z-index: -1;
+  animation: silver-pulse 4s ease-in-out infinite;
+}
+
+/* Geometric patterns with aura */
+.geometric-bg {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.geometric-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(192, 192, 192, 0.02) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.01) 50%, transparent 70%);
+  pointer-events: none;
+  animation: geometric-flow 8s ease-in-out infinite;
+}
+
+.dark .geometric-bg::before {
+  background-image: radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(192, 192, 192, 0.03) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.02) 50%, transparent 70%);
+}
+
+/* Glass effects with aura */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+/* Enhanced glow effects */
+.glow-border {
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+}
+
+.dark .glow-border {
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.dark .glow-text {
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+/* Button hover fixes with proper contrast */
+.btn-hover-fix {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Default buttons - dark background, light text */
+.btn-hover-fix:not(.btn-outline-hover-fix) {
+  color: hsl(var(--primary-foreground)) !important;
+  background-color: hsl(var(--primary)) !important;
+}
+
+.btn-hover-fix:not(.btn-outline-hover-fix):hover {
+  color: hsl(var(--primary-foreground)) !important;
+  background-color: hsl(var(--primary)) !important;
+  opacity: 0.9;
+}
+
+/* Outline buttons - follow theme colors */
+.btn-outline-hover-fix {
+  color: hsl(var(--foreground)) !important;
+  border-color: hsl(var(--border)) !important;
+  background-color: hsl(var(--background)) !important;
+}
+
+.btn-outline-hover-fix:hover {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Remove the global button override that was causing issues */
+/* button {
+  color: hsl(var(--foreground)) !important;
+}
+
+button:hover {
+  color: hsl(var(--foreground)) !important;
+} */
+
+/* Specific save button fix with proper theming */
+.save-button {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--background)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+.save-button:hover {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+}
+
+.save-button.saved {
+  color: hsl(var(--muted-foreground)) !important;
+  background-color: hsl(var(--muted)) !important;
+}
+
+/* Primary buttons (Publish, etc.) - should have proper contrast */
+.btn-primary {
+  color: hsl(var(--primary-foreground)) !important;
+  background-color: hsl(var(--primary)) !important;
+}
+
+.btn-primary:hover {
+  color: hsl(var(--primary-foreground)) !important;
+  background-color: hsl(var(--primary)) !important;
+  opacity: 0.9;
+}
+
+/* Icon button hover fixes */
+.icon-btn-hover {
+  color: hsl(var(--muted-foreground)) !important;
+  background-color: transparent !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.icon-btn-hover:hover {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+}
+
+/* Ghost buttons */
+.btn-ghost {
+  color: hsl(var(--foreground)) !important;
+  background-color: transparent !important;
+}
+
+.btn-ghost:hover {
+  color: hsl(var(--accent-foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+}
+
+/* Secondary buttons */
+.btn-secondary {
+  color: hsl(var(--secondary-foreground)) !important;
+  background-color: hsl(var(--secondary)) !important;
+}
+
+.btn-secondary:hover {
+  color: hsl(var(--secondary-foreground)) !important;
+  background-color: hsl(var(--secondary)) !important;
+  opacity: 0.8;
+}
+
+/* Icon button hover fixes */
+.icon-btn-hover {
+  color: hsl(var(--muted-foreground)) !important;
+  background-color: transparent !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.icon-btn-hover:hover {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+}
+
+/* Custom scrollbar with aura */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgba(255, 215, 0, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.3);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.6);
+}
+
+/* Animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes golden-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes silver-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.01) rotate(1deg);
+  }
+}
+
+@keyframes geometric-flow {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px);
+    opacity: 0.5;
+  }
+  25% {
+    transform: translateX(2px) translateY(-1px);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(0px) translateY(-2px);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translateX(-1px) translateY(-1px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes typing {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.golden-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.golden-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.typing-indicator {
+  animation: typing 1.5s infinite;
+}
+
+/* Phone frame styles */
+.phone-frame {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border-radius: 25px;
+  padding: 8px;
+  box-shadow: 0 0 0 2px #333, 0 0 0 3px #555, 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.phone-frame::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  z-index: 10;
+}
+
+.phone-frame::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+  z-index: 10;
+}
+
+.phone-screen {
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+
+  .mobile-full {
+    width: 100% !important;
+  }
+
+  .mobile-stack {
+    flex-direction: column !important;
+  }
+}
+
+/* Theme toggle styles */
+.theme-toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.theme-toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-toggle-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e5e7eb;
+  transition: .4s;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.dark .theme-toggle-label {
+  background-color: #374151;
+}
+
+.theme-toggle-label:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.theme-toggle-input:checked + .theme-toggle-label:before {
+  transform: translateX(24px);
+}
+
+.sun-icon,
+.moon-icon {
+  width: 14px;
+  height: 14px;
+  color: #6b7280;
+}
+
+.sun-icon {
+  margin-left: 2px;
+}
+
+.moon-icon {
+  margin-right: 2px;
+}

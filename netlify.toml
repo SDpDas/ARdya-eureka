@@ -1,0 +1,88 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Environment variables (optional, add if needed for your build)
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirects for static routes
+[[redirects]]
+  from = "/login"
+  to = "/.next/server/pages/login.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/signup"
+  to = "/.next/server/pages/signup.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/about"
+  to = "/.next/server/pages/about.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/.next/server/pages/contact.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/blog"
+  to = "/.next/server/pages/blog.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/help"
+  to = "/.next/server/pages/help.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/docs"
+  to = "/.next/server/pages/docs.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/community"
+  to = "/.next/server/pages/community.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/projects"
+  to = "/.next/server/pages/projects.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/llm"
+  to = "/.next/server/pages/llm.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/creator"
+  to = "/.next/server/pages/creator.html"
+  status = 200
+  force = true
+
+# Redirect for dynamic publish route
+[[redirects]]
+  from = "/publish/:id"
+  to = "/.next/server/pages/publish/[id].html"
+  status = 200
+  force = true
+
+# Fallback for client-side routing (handles any unmatched routes)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
