@@ -1,4 +1,4 @@
-# ARdya - AI-Powered Augmented Reality Creator
+# ARdya - AI-Powered Augmented Reality Studio
 
 ARdya is a Next.js application that enables users to create immersive augmented reality (AR) experiences using AI-driven 3D model generation. With a user-friendly interface, users can describe 3D scenes, upload assets, and publish AR experiences accessible via QR codes on any smartphone or tablet.
 
